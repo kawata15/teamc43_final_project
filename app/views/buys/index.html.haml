@@ -55,6 +55,19 @@
         %h3
           支払い方法
         .product__buy__container__credit__inner__text
+          - if @token.present?
+            %ul.product__buy__container__credit__inner__text__list
+              %li
+                .product__buy__container__credit__inner__text__list--num
+                  = ("***********" + @cards.last4)
+                .product__buy__container__credit__inner__text__list--exp
+                  = "#{@cards.exp_month}/ #{@cards.exp_year}"
+                .product__buy__container__credit__inner__text--list--brand
+                  = @cards.brand
+
+          - else
+            .product__buy__container__credit__inner__text__list
+              カードを登録してください
         .product__buy__container__credit__inner__link
           = link_to "#" do
             %span

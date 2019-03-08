@@ -14,6 +14,12 @@ class UsersController < ApplicationController
   end
 
   def card
+    @token = current_user.customer_id
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    if @token.present?
+      customer =  Payjp::Customer.retrieve(@token)
+      @cards = customer.cards.retrieve(customer.default_card)
+    end
   end
 
   def paycreate

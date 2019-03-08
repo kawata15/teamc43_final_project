@@ -3,6 +3,12 @@ class BuysController < ApplicationController
   def index
     @product = Product.find(params[:product_id])
     unless @product.seller_id == current_user.id
+      @token = current_user.customer_id
+      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+      if @token.present?
+        customer =  Payjp::Customer.retrieve(@token)
+        @cards = customer.cards.retrieve(customer.default_card)
+      end
     else
       redirect_to root_path
     end
