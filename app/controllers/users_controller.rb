@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :sign_in_confirmation
   def index
+    @user = current_user
   end
   def create
   end

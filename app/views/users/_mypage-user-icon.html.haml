@@ -2,7 +2,7 @@
   .mypage-user-icon__minibox
     %a{href: "",class: "mypage-user-icon__minibox__link"}
     = image_tag("/images/mypage/member_photo_noimage.png", class: "mypage-user-icon__minibox__icon-img")
-    %h2.mypage-user-icon__minibox__name userのnickname
+    %h2.mypage-user-icon__minibox__name #{@user.nickname}
     .mypage-user-icon__minibox__number
       %p.mypage-user-icon__minibox__number__text
         評価
